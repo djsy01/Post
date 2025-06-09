@@ -1,0 +1,35 @@
+.header {
+  position: fixed;      /* 화면 맨 위에 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;         /* 창 너비 100% */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #282c34;
+  padding: 10px 20px;
+  z-index: 1000;       /* 다른 요소 위에 보이도록 */
+  box-sizing: border-box;  /* 패딩 포함해서 너비 계산 */
+  height: 50px;        /* 높이 고정 (필요하면 조절) */
+}
+
+.left-section{
+    color: white;
+    font-weight: bolder;
+}
+
+.right-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  margin-left: 15px;  /* 오른쪽 정렬에 적합한 왼쪽 마진 */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}

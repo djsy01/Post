@@ -1,0 +1,140 @@
+.write {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  font-family: 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+}
+
+.write h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 기본 label + input은 세로 정렬 */
+.write label {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* 옆으로 정렬되는 항목용 */
+.write .row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+}
+
+.write .row label {
+  width: 100px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  text-align: let;
+}
+
+.label-group {
+  display: flex;
+  flex-direction: column;
+  width: 140px; /* 조절 가능 */
+  margin-right: 10px;
+}
+
+.label-group label {
+  font-weight: bold;
+}
+
+.note {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+.write .row input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-left: 10px;
+}
+
+.write textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 6px;
+  min-height: 120px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+/* 포커스 효과 */
+.write input:focus,
+.write textarea:focus {
+  outline: none;
+  border-color: #0077cc;
+}
+
+/* 첨부파일 */
+.file-label {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.file-label input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-top: 6px;
+}
+
+.file-label input[type="file"]:focus {
+  outline: none;
+  border-color: #0077cc;
+}
+
+/* 버튼 */
+.write button {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 20px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.write button:hover {
+  background-color: #005fa3;
+}
+
+.write button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
