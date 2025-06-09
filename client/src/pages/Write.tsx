@@ -1,4 +1,6 @@
-import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { useEffect, useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPostById, createPost, updatePost } from '../api/posts';
 import './Write.css';
@@ -48,10 +50,12 @@ export default function Write() {
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setForm(prev => ({ ...prev, file: e.target.files[0] }));
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setForm(prev => ({ ...prev, file: files[0] }));
     }
   };
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

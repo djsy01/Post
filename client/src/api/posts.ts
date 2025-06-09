@@ -1,5 +1,4 @@
 import axios from './axios';
-import type { AxiosResponse } from 'axios';
 
 export interface Post {
   b_id: number;

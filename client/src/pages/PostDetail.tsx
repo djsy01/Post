@@ -1,27 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchPostById, deletePost } from '../api/posts';
+import type {Post} from '../api/posts'
 import './PostDetail.css';
 
-interface PostDetailType {
-  b_id: number;
-  b_title: string;
-  b_name: string;
-  b_mail: string;
-  b_content: string;
-  b_date: string;
-  b_filename?: string;
-  b_filesize?: number;
-}
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
 
 export default function PostDetail() {
   const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<PostDetailType | null>(null);
+  const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!id) return;
+
     fetchPostById(Number(id))
       .then(setPost)
       .catch(err => {
@@ -35,7 +28,6 @@ export default function PostDetail() {
   const handleDelete = () => {
     const pwd = prompt('비밀번호를 입력하세요');
     if (!pwd) return alert('비밀번호가 필요합니다');
-
     if (!id) return;
 
     deletePost(Number(id), pwd)
@@ -49,10 +41,8 @@ export default function PostDetail() {
       });
   };
 
-  // 첨부파일 확장자 체크 함수 (이미지면 true 반환)
-  const isImageFile = (filename: string) => {
-    return /\.(jpg|jpeg|png|gif|bmp|webp)$/i.test(filename);
-  };
+  const isImageFile = (filename: string) =>
+    /\.(jpg|jpeg|png|gif|bmp|webp)$/i.test(filename);
 
   if (loading) return <p>로딩 중...</p>;
   if (!post) return <p>게시글이 없습니다.</p>;
@@ -61,7 +51,8 @@ export default function PostDetail() {
     <div className="post-detail-container">
       <h2>{post.b_title}</h2>
       <p className="post-meta">
-        작성자: {post.b_name} ({post.b_mail || '이메일 없음'}) | {post.b_date.slice(0, 10)}
+        작성자: {post.b_name} ({post.b_mail || '이메일 없음'}) |{' '}
+        {post.b_date.slice(0, 10)}
       </p>
       <div className="post-content">{post.b_content}</div>
 
@@ -70,13 +61,13 @@ export default function PostDetail() {
           <p>첨부파일:</p>
           {isImageFile(post.b_filename) ? (
             <img
-              src={`http://localhost:4000/uploads/${post.b_filename}`}
+              src={`${API_BASE_URL}/uploads/${post.b_filename}`}
               alt={post.b_filename}
               className="attachment-image"
             />
           ) : (
             <a
-              href={`http://localhost:4000/uploads/${post.b_filename}`}
+              href={`${API_BASE_URL}/uploads/${post.b_filename}`}
               target="_blank"
               rel="noopener noreferrer"
               className="attachment-link"
@@ -88,9 +79,18 @@ export default function PostDetail() {
       )}
 
       <div className="post-actions">
-        <button onClick={() => navigate(`/write/${post.b_id}`)} className="btn edit-btn">수정</button>
-        <button onClick={handleDelete} className="btn delete-btn">삭제</button>
-        <button onClick={() => navigate('/')} className='btn back-btn'>목록</button>
+        <button
+          onClick={() => navigate(`/write/${post.b_id}`)}
+          className="btn edit-btn"
+        >
+          수정
+        </button>
+        <button onClick={handleDelete} className="btn delete-btn">
+          삭제
+        </button>
+        <button onClick={() => navigate('/')} className="btn back-btn">
+          목록
+        </button>
       </div>
     </div>
   );
