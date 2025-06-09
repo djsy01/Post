@@ -7,6 +7,5 @@ const instance = axios.create({
 
 // API 호출 함수
 export const fetchPosts = () => instance.get('/posts');
-export const fetchPostById = (id: number) => instance.get(`/posts/${id}`);
 
 export default instance;

@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://post-psi-two.vercel.app/'],  // React 개발 서버 주소 (배포시 변경 필요)
+  origin: ['http://localhost:5173', 'https://post-psi-two.vercel.app'],  // React 개발 서버 주소 (배포시 변경 필요)
   credentials: true
 }));
 app.use('/posts', postsRouter);
