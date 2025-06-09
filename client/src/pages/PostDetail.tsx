@@ -4,7 +4,7 @@ import { fetchPostById, deletePost } from '../api/posts';
 import type {Post} from '../api/posts'
 import './PostDetail.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
 export default function PostDetail() {
   const { id } = useParams<{ id: string }>();
