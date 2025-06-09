@@ -32,4 +32,4 @@ export const updatePost = (id: number, formData: FormData): Promise<any> =>
   }).then(res => res.data);
 
 export const deletePost = (id: number, b_pwd: string): Promise<any> =>
-  axios.delete(`${API_PATH}/${id}`, { data: { b_pwd } }).then(res => res.data);
+  axios.delete(`${API_PATH}/${id}?pwd=${b_pwd}`).then(res => res.data);

@@ -7,6 +7,4 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const fetchPosts = () => instance.get('/posts');
-
 export default instance;
