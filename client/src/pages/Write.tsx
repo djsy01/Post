@@ -34,7 +34,13 @@ export default function Write() {
       fetchPostById(Number(id))
         .then(post => {
           const { b_name, b_title, b_mail = '', b_content } = post;
-          setForm(prev => ({ ...prev, b_name, b_title, b_mail, b_content }));
+          setForm({
+            b_name,
+            b_title,
+            b_mail,
+            b_content,
+            b_pwd: '', // 새로 입력받도록 비워놓기
+          });
         })
         .catch(err => {
           console.error(err);
