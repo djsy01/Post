@@ -31,6 +31,9 @@ exports.createPost = async (req, res) => {
   const b_filename = req.file ? req.file.filename : null;
   const b_filesize = req.file ? req.file.size.toString() : null;
 
+  console.log('req.body:', req.body);
+  console.log('req.file:', req.file);
+
   try {
     const [result] = await pool.query(
       `INSERT INTO mdb (b_name, b_title, b_mail, b_content, b_pwd, b_filename, b_filesize, b_date, b_view)
