@@ -77,15 +77,20 @@ exports.deletePost = async (req, res) => {
   const { id } = req.params;
   const { pwd } = req.query;
 
+  console.log('DELETE 요청 id:', id);
+  console.log('DELETE 요청 pwd:', pwd);
+
   try {
     const [rows] = await pool.query('SELECT b_pwd FROM mdb WHERE b_id = ?', [id]);
+    console.log('조회된 게시글 비밀번호:', rows[0]?.b_pwd);
+
     if (rows.length === 0) return res.status(404).json({ message: '게시글 없음' });
     if (rows[0].b_pwd !== pwd) return res.status(403).json({ message: '비밀번호 불일치' });
 
     await pool.query('DELETE FROM mdb WHERE b_id = ?', [id]);
     res.json({ message: '게시글 삭제 완료' });
   } catch (err) {
-    console.error(err);
+    console.error('삭제 중 에러:', err);
     res.status(500).json({ message: '게시글 삭제 실패' });
   }
 };
