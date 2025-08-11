@@ -62,7 +62,6 @@ export default function Write() {
     }
   };
 
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -88,9 +87,12 @@ export default function Write() {
         await updatePost(Number(id), formData);
         alert('게시글 수정 완료');
       } else {
-        await createPost(formData);
+        const result = await createPost(formData);
         alert('게시글 작성 완료');
+        navigate(`/post/${result.b_id}`); // ← 이 줄을 추가해서 상세 페이지로 이동 가능
+        return;
       }
+
       navigate('/');
     } catch (err) {
       console.error(err);

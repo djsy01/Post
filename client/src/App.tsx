@@ -11,10 +11,10 @@ export default function App() {
       <Header />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Post />} />
-          <Route path="/post/:id" element={<PostDetail />} />
-          <Route path="/write" element={<Write />} />
-          <Route path="/write/:id" element={<Write />} /> {/* 수정 시에도 사용 */}
+          <Route path="/" element={<Post />} />                 {/* 게시글 목록 */}
+          <Route path="/post/:id" element={<PostDetail />} />   {/* 게시글 상세 */}
+          <Route path="/write" element={<Write />} />           {/* 게시글 작성 */}
+          <Route path="/write/:id" element={<Write />} />       {/* 게시글 수정 */}
         </Routes>
       </main>
     </>
